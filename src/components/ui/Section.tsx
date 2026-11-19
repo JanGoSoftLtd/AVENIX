@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Reveal } from './Reveal'
 
 export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
@@ -32,13 +33,13 @@ interface HeadingProps {
 export function SectionHeading({ eyebrow, title, text, tone = 'light', align = 'left', as: Tag = 'h2' }: HeadingProps) {
   const dark = tone === 'dark'
   return (
-    <div className={`mb-10 max-w-3xl sm:mb-14 ${align === 'center' ? 'mx-auto text-center' : ''}`}>
+    <Reveal className={`mb-10 max-w-3xl sm:mb-14 ${align === 'center' ? 'mx-auto text-center' : ''}`}>
       {eyebrow && (
         <p className={`mb-3 text-xs font-semibold uppercase tracking-[0.16em] ${dark ? 'text-lavender' : 'text-violet-dark'}`}>{eyebrow}</p>
       )}
       <Tag className={`text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.75rem] ${dark ? '!text-white' : ''}`}>{title}</Tag>
       {text && <p className={`mt-4 text-base leading-relaxed sm:text-lg ${dark ? 'text-white/75' : 'text-muted'}`}>{text}</p>}
-    </div>
+    </Reveal>
   )
 }
 

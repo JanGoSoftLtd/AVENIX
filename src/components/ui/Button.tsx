@@ -24,7 +24,7 @@ interface Props {
 }
 
 export function Button({ children, variant = 'primary', to, href, arrow, className = '', type = 'button', disabled, onClick }: Props) {
-  const cls = `group inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 ${styles[variant]} ${className}`
+  const cls = `group inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 ${styles[variant]} ${className}`
   const content = (
     <>
       {children}

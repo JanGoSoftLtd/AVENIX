@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { ProManagerMockup } from './ProManagerMockup'
 import { services } from '@/data/services'
 import { industries } from '@/data/industries'
-import { process, whyUs, insightTopics, projectCategories, type Item } from '@/data/misc'
+import { process, whyUs, insightTopics, type Item } from '@/data/misc'
 import { proManager } from '@/data/products'
 import { articles } from '@/data/articles'
 
@@ -102,7 +102,7 @@ export function ProcessSteps() {
 export function ProductShowcase() {
   return (
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-      <div>
+      <Reveal direction="left">
         <span className="inline-block rounded-full bg-violet/10 px-3 py-1 text-xs font-semibold text-violet-dark">AVENIX Product</span>
         <h3 className="mt-4 text-3xl font-bold sm:text-4xl">{proManager.name}</h3>
         <p className="mt-2 font-display text-lg font-medium text-violet-dark">{proManager.tagline}</p>
@@ -116,8 +116,8 @@ export function ProductShowcase() {
           ))}
         </ul>
         <div className="mt-8"><Button to="/products" arrow>Explore ProManager</Button></div>
-      </div>
-      <Reveal><ProManagerMockup /></Reveal>
+      </Reveal>
+      <Reveal direction="right"><ProManagerMockup /></Reveal>
     </div>
   )
 }
@@ -134,23 +134,19 @@ export function ComingSoonCard() {
   )
 }
 
-export function PortfolioGrid() {
+export function FeaturedProduct() {
   return (
-    <div className="grid gap-5 lg:grid-cols-3">
-      <div className="rounded-xl border border-violet/40 bg-white p-6 lg:col-span-2">
-        <span className="rounded-full bg-violet px-3 py-1 text-xs font-semibold text-white">Featured proprietary product</span>
-        <h3 className="mt-4 text-2xl font-bold">ProManager</h3>
-        <p className="mt-1 text-sm font-medium text-violet-dark">Business Management Systems · SaaS Platforms · Web Applications</p>
-        <p className="mt-3 leading-relaxed text-muted">{proManager.description} It is the first product built and owned by AVENIX.</p>
-        <div className="mt-5"><Button to="/products" variant="secondary" arrow>View product</Button></div>
+    <Reveal direction="scale">
+      <div className="flex flex-col gap-6 rounded-2xl border border-violet/40 bg-white p-6 transition-shadow hover:shadow-lg hover:shadow-violet/10 sm:p-8 md:flex-row md:items-center md:justify-between">
+        <div className="max-w-2xl">
+          <span className="rounded-full bg-violet px-3 py-1 text-xs font-semibold text-white">Featured proprietary product</span>
+          <h3 className="mt-4 text-2xl font-bold">ProManager</h3>
+          <p className="mt-1 text-sm font-medium text-violet-dark">Business Management Systems · SaaS Platforms · Web Applications</p>
+          <p className="mt-3 leading-relaxed text-muted">{proManager.description} It is the first product built and owned by AVENIX.</p>
+        </div>
+        <div className="shrink-0"><Button to="/products" variant="secondary" arrow>View product</Button></div>
       </div>
-      <div className="rounded-xl border border-line bg-white p-6">
-        <h3 className="font-semibold">Categories we work in</h3>
-        <ul className="mt-3 space-y-2 text-sm text-muted">
-          {projectCategories.map((c) => <li key={c} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-lavender" aria-hidden="true" />{c}</li>)}
-        </ul>
-      </div>
-    </div>
+    </Reveal>
   )
 }
 

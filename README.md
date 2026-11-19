@@ -60,6 +60,9 @@ To go live, set the endpoint to a form service (e.g. Formspree, Web3Forms) or yo
 ## Adding content
 
 - **Articles:** add objects to `src/data/articles.ts`; the Insights pages render them automatically.
+- **Projects:** edit `src/data/projects.ts`. Add `description`, `tags`, `image` (file in `public/`) and `url` only once verified; the "View Project" link appears only when `url` is set.
+- **Customer reviews:** add real, approved reviews to `src/data/reviews.ts`. With none, production shows an honest empty state; sample placeholders appear in `npm run dev` only. Star ratings render only when `rating` is provided.
+- **Animations:** `src/components/ui/Reveal.tsx` (`direction`: up, left, right, scale, fade). Respects `prefers-reduced-motion`.
 - **Portfolio:** only add verified projects. Nothing is invented on this site.
 - **Product screenshots:** the ProManager visual is an illustrative CSS concept. Replace it with real screenshots when available.
 

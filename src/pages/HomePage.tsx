@@ -4,8 +4,10 @@ import { Section, SectionHeading, Container } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { Reveal } from '@/components/ui/Reveal'
 import { CtaBanner } from '@/components/sections/CtaBanner'
+import { ReviewsSection } from '@/components/sections/ReviewsSection'
+import { ProjectsGrid } from '@/components/sections/ProjectsGrid'
 import { ContactForm } from '@/components/sections/ContactForm'
-import { ServicesGrid, WhySection, IndustriesGrid, ProcessSteps, ProductShowcase, ComingSoonCard, PortfolioGrid, InsightsPreview } from '@/components/sections/Blocks'
+import { ServicesGrid, WhySection, IndustriesGrid, ProcessSteps, ProductShowcase, ComingSoonCard, FeaturedProduct, InsightsPreview } from '@/components/sections/Blocks'
 import { expertise } from '@/data/misc'
 import { TAGLINE } from '@/lib/site'
 
@@ -29,7 +31,7 @@ export default function HomePage() {
         <div className="grid-bg pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-32 top-10 h-[28rem] w-[28rem] rounded-full bg-violet/30 blur-3xl" aria-hidden="true" />
         <Container className="relative grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
-          <div>
+          <Reveal direction="left">
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-lavender">
               <span className="h-1.5 w-1.5 rounded-full bg-lavender" aria-hidden="true" />
               Software · AI · Automation · SaaS
@@ -44,10 +46,10 @@ export default function HomePage() {
               <Button to="/services" variant="primary" arrow>Explore Our Services</Button>
               <Button to="/contact" variant="outlineLight">Let&apos;s Discuss Your Project</Button>
             </div>
-          </div>
+          </Reveal>
           <div className="grid gap-3 sm:grid-cols-2" aria-hidden="false">
             {heroCards.map((c, i) => (
-              <Reveal key={c.title} delay={i * 0.08}>
+              <Reveal key={c.title} direction="right" delay={0.15 + i * 0.1}>
                 <div className="h-full rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-colors hover:bg-white/10">
                   <c.icon className="h-6 w-6 text-lavender" aria-hidden="true" />
                   <h2 className="mt-3 text-base font-semibold !text-white">{c.title}</h2>
@@ -61,21 +63,21 @@ export default function HomePage() {
 
       <Section tone="white" id="about">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
+          <Reveal direction="left">
             <SectionHeading eyebrow="About AVENIX" title="We Turn Technology Into Business Possibilities." />
             <p className="-mt-6 leading-relaxed text-muted sm:-mt-9">
               AVENIX is a software engineering and AI company. We combine deep technical craft with a practical understanding of how businesses operate, so what we build is not just impressive, but genuinely useful.
             </p>
             <div className="mt-6"><Button to="/about" variant="secondary" arrow>About Us</Button></div>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal direction="right" delay={0.1}>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-violet-dark">Core expertise</h3>
             <ul className="mt-4 flex flex-wrap gap-2.5">
               {expertise.map((e) => (
                 <li key={e} className="rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium">{e}</li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
@@ -105,9 +107,12 @@ export default function HomePage() {
 
       <Section tone="white">
         <SectionHeading eyebrow="Portfolio" title="Built by AVENIX." text="We publish only verified work. Here is where we are today." />
-        <PortfolioGrid />
+        <FeaturedProduct />
+        <div className="mt-8"><ProjectsGrid /></div>
         <div className="mt-8"><Button to="/portfolio" variant="secondary" arrow>View portfolio</Button></div>
       </Section>
+
+      <ReviewsSection />
 
       <CtaBanner />
 
