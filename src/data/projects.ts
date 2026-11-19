@@ -1,28 +1,74 @@
+export type VisualKind = 'factory' | 'mobile' | 'catalog' | 'shop' | 'profile' | 'erp' | 'workflow'
+
 export interface Project {
   id: string
   name: string
   category: string
-  /** Only fill in once verified. Cards show a neutral line when absent. */
-  description?: string
+  /** Short description. Keep it factual; no results or numbers unless verified. */
+  description: string
+  /** Which AVENIX concept illustration to show when there is no real screenshot. */
+  visual: VisualKind
+  /** Real screenshot: file in /public (e.g. '/projects/muri.webp'). When set it replaces the illustration. */
+  image?: string
   /** Only verified technologies. */
   tags?: string[]
-  /** Path under /public (e.g. '/projects/muri.webp') or URL. Branded placeholder is used when absent. */
-  image?: string
   /** Real destination only. The "View Project" button renders only when this is set. */
   url?: string
 }
 
 /**
- * Project names were supplied by AVENIX. Categories are a provisional grouping
- * based on the project names; descriptions, technologies, images and links
- * are intentionally empty until verified. Edit entries here to update the site.
+ * Project list. No genuine screenshots, technology details or public URLs exist in the
+ * repository yet, so cards use clearly labelled concept illustrations. Add `image`,
+ * `tags` and `url` as each becomes available and verified.
  */
 export const projects: Project[] = [
-  { id: 'muri-factory', name: 'Muri Factory Management', category: 'Business Management Systems' },
-  { id: 'alokdhara', name: 'Alokdhara Publication', category: 'Web Applications' },
-  { id: 'meghna-accessories', name: 'Meghna Accessories Ltd', category: 'Web Applications' },
-  { id: 'hala-bazar', name: 'Hala Bazar E-commerce', category: 'Web Applications' },
-  { id: 'portfolio-website', name: 'Portfolio Website', category: 'Web Applications' },
-  { id: 'customer-erp', name: 'Customer ERP', category: 'Business Management Systems' },
-  { id: 'service-automation', name: 'Business Customer Service Automation', category: 'AI & Automation' },
+  {
+    id: 'muri-factory',
+    name: 'Muri Factory Management',
+    category: 'Business Management Systems',
+    visual: 'factory',
+    description: 'A factory management solution that brings operational activities and business records into one organised digital system.',
+  },
+  {
+    id: 'alokdhara',
+    name: 'Alokdhara Publication – Mobile Application',
+    category: 'Mobile Applications',
+    visual: 'mobile',
+    description: 'A dedicated mobile application that makes the publication more accessible to its audience, designed for usability.',
+  },
+  {
+    id: 'meghna-accessories',
+    name: 'Meghna Accessories Ltd.',
+    category: 'Web Applications',
+    visual: 'catalog',
+    description: 'A digital solution for Meghna Accessories Ltd., supporting how the business presents and manages its work.',
+  },
+  {
+    id: 'halal-bazar',
+    name: 'Halal Bazar – E-commerce Platform',
+    category: 'Web Applications',
+    visual: 'shop',
+    description: 'An online shopping platform built around the business requirements and the customer shopping experience.',
+  },
+  {
+    id: 'portfolio-website',
+    name: 'Personal Portfolio Website – Dr. Ahmad Mursel Anam',
+    category: 'Web Applications',
+    visual: 'profile',
+    description: 'A dedicated personal website presenting a professional profile and information in an organised way.',
+  },
+  {
+    id: 'customer-erp',
+    name: 'Customer ERP',
+    category: 'Business Management Systems',
+    visual: 'erp',
+    description: 'A business management system that centralises operations, records and reporting for day-to-day control.',
+  },
+  {
+    id: 'sunburg-automation',
+    name: 'Sunburg – Business Process Automation',
+    category: 'AI & Automation',
+    visual: 'workflow',
+    description: 'Automation of repetitive activities and operational workflows to support more efficient day-to-day operations.',
+  },
 ]

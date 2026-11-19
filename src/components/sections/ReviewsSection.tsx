@@ -4,10 +4,12 @@ import { Section, SectionHeading } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { ReviewCard } from '@/components/ui/ReviewCard'
 import { Button } from '@/components/ui/Button'
-import { reviews, devPlaceholderReviews } from '@/data/reviews'
+import { testimonials } from '@/data/reviews'
+import { HIDE_DRAFT_TESTIMONIALS } from '@/lib/site'
 
-// Placeholders are only ever shown in local development, never in a production build.
-const list = reviews.length ? reviews : import.meta.env.DEV ? devPlaceholderReviews : []
+// Draft testimonials can be hidden for a build with VITE_HIDE_DRAFT_TESTIMONIALS=true.
+const list = testimonials.filter((t) => t.status === 'approved' || !HIDE_DRAFT_TESTIMONIALS)
+const hasDrafts = list.some((t) => t.status === 'draft')
 
 export function ReviewsSection() {
   const track = useRef<HTMLDivElement>(null)
@@ -36,7 +38,7 @@ export function ReviewsSection() {
   return (
     <Section tone="white" id="reviews">
       <div className="mb-10 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
-        <SectionHeading eyebrow="Reviews" title="What Our Customers Say" text="Feedback from the businesses we build for." />
+        <SectionHeading eyebrow="Reviews" title="What Our Clients Say" text="Building lasting partnerships through technology, innovation, and meaningful results." />
         {list.length > 1 && (
           <div className="mb-10 flex gap-2 sm:mb-14" role="group" aria-label="Review navigation">
             <button type="button" onClick={() => go(-1)} disabled={edge.start} aria-label="Previous reviews" className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-navy transition-colors hover:border-violet hover:text-violet-dark disabled:cursor-not-allowed disabled:opacity-40">
@@ -53,15 +55,15 @@ export function ReviewsSection() {
         <Reveal>
           <div className="flex flex-col items-center rounded-2xl border border-dashed border-lavender bg-surface px-6 py-12 text-center">
             <MessageSquareQuote className="h-9 w-9 text-violet" aria-hidden="true" />
-            <h3 className="mt-4 text-xl font-semibold">Customer reviews will appear here.</h3>
+            <h3 className="mt-4 text-xl font-semibold">Client reviews will appear here.</h3>
             <p className="mt-2 max-w-md text-sm text-muted">We publish only genuine, approved feedback. Working with AVENIX on a project? We would be glad to hear from you.</p>
             <div className="mt-6"><Button to="/contact" variant="secondary">Get in touch</Button></div>
           </div>
         </Reveal>
       ) : (
         <>
-          {import.meta.env.DEV && !reviews.length && (
-            <p className="mb-4 rounded-lg bg-amber-50 px-4 py-2 text-xs text-amber-900">Development preview: showing sample placeholders. They are hidden in production until real reviews are added to <code>src/data/reviews.ts</code>.</p>
+          {hasDrafts && (
+            <p role="note" className="mb-4 rounded-lg bg-amber-50 px-4 py-2.5 text-xs text-amber-900">Content status: these testimonials are drafts prepared by AVENIX and are awaiting client approval. They are not verified client quotations.</p>
           )}
           <div
             ref={track}

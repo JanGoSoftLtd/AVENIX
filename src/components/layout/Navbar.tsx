@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/ui/Logo'
 import { Button } from '@/components/ui/Button'
-import { NAV } from '@/lib/site'
+import { NAV, PHONE_DISPLAY, WHATSAPP_URL, CONTACT_EMAIL } from '@/lib/site'
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
@@ -70,6 +70,10 @@ export function Navbar() {
             ))}
           </ul>
           <Button to="/contact" arrow className="mt-5 w-full">Get in Touch</Button>
+          <p className="mt-5 space-y-1 text-center text-sm text-muted">
+            <a className="block font-medium text-violet-dark" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">WhatsApp {PHONE_DISPLAY}</a>
+            <a className="block break-all" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          </p>
         </div>
       )}
     </header>

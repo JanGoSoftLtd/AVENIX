@@ -6,6 +6,7 @@ import { Reveal } from '@/components/ui/Reveal'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { ReviewsSection } from '@/components/sections/ReviewsSection'
 import { ProjectsGrid } from '@/components/sections/ProjectsGrid'
+import { ContactDetails } from '@/components/sections/ContactDetails'
 import { ContactForm } from '@/components/sections/ContactForm'
 import { ServicesGrid, WhySection, IndustriesGrid, ProcessSteps, ProductShowcase, ComingSoonCard, FeaturedProduct, InsightsPreview } from '@/components/sections/Blocks'
 import { expertise } from '@/data/misc'
@@ -123,7 +124,10 @@ export default function HomePage() {
 
       <Section id="contact">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
-          <SectionHeading eyebrow="Contact" title="Let's talk about your project." text="Share a few details and we will come back with practical next steps. No obligation." />
+          <div>
+            <SectionHeading eyebrow="Contact" title="Let's talk about your project." text="Share a few details and we will come back with practical next steps. No obligation." />
+            <ContactDetails />
+          </div>
           <ContactForm />
         </div>
       </Section>

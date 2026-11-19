@@ -49,7 +49,7 @@ Copy `.env.example` to `.env` (never commit `.env`). All variables are public, b
 |---|---|
 | `VITE_SITE_URL` | Canonical site URL |
 | `VITE_CONTACT_ENDPOINT` | HTTPS endpoint receiving the contact form as a JSON `POST` |
-| `VITE_CONTACT_EMAIL` | Optional public email shown on the site |
+| `VITE_HIDE_DRAFT_TESTIMONIALS` | `true` hides the draft testimonials until clients approve them |
 
 ### Contact form
 
