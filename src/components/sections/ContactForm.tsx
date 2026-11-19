@@ -4,7 +4,7 @@ import { CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { services } from '@/data/services'
 import { budgets } from '@/data/misc'
-import { CONTACT_ENDPOINT, CONTACT_EMAIL } from '@/lib/site'
+import { CONTACT_ENDPOINT, CONTACT_EMAIL, WEB3FORMS_KEY } from '@/lib/site'
 
 interface Values {
   name: string
@@ -63,18 +63,29 @@ export function ContactForm() {
       setStatus('success')
       return
     }
-    if (!CONTACT_ENDPOINT) {
+    if (!CONTACT_ENDPOINT && !WEB3FORMS_KEY) {
       setStatus('unconfigured')
       return
     }
     setStatus('sending')
     try {
-      const res = await fetch(CONTACT_ENDPOINT, {
+      const web3 = !CONTACT_ENDPOINT
+      const res = await fetch(web3 ? 'https://api.web3forms.com/submit' : CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...values, source: 'avenix-website' }),
+        body: JSON.stringify(
+          web3
+            ? {
+                access_key: WEB3FORMS_KEY,
+                subject: `New AVENIX website enquiry from ${values.name.trim()}`,
+                from_name: 'AVENIX Website',
+                ...values,
+              }
+            : { ...values, source: 'avenix-website' },
+        ),
       })
       if (!res.ok) throw new Error(String(res.status))
+      if (web3 && !(await res.json()).success) throw new Error('rejected')
       setStatus('success')
       setValues(empty)
     } catch {

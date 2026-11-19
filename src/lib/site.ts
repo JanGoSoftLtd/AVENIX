@@ -1,6 +1,8 @@
 export const SITE_URL =
   (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || 'https://www.avenixltd.cloud'
 export const CONTACT_ENDPOINT = (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined)?.trim() || ''
+/** Web3Forms public access key (safe to expose; it only allows sending to the email it was issued for). */
+export const WEB3FORMS_KEY = (import.meta.env.VITE_WEB3FORMS_KEY as string | undefined)?.trim() || ''
 export const CONTACT_EMAIL = 'jangosoftltd@gmail.com'
 export const PHONE_DISPLAY = '+880 1629888934'
 export const WHATSAPP_URL = 'https://wa.me/8801629888934'

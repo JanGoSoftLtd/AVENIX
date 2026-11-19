@@ -48,6 +48,7 @@ Copy `.env.example` to `.env` (never commit `.env`). All variables are public, b
 | Variable | Purpose |
 |---|---|
 | `VITE_SITE_URL` | Canonical site URL |
+| `VITE_WEB3FORMS_KEY` | Web3Forms public access key: delivers form submissions to the email the key was issued for |
 | `VITE_CONTACT_ENDPOINT` | HTTPS endpoint receiving the contact form as a JSON `POST` |
 | `VITE_HIDE_DRAFT_TESTIMONIALS` | `true` hides the draft testimonials until clients approve them |
 
