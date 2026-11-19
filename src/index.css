@@ -1,0 +1,37 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import 'tailwindcss';
+
+@theme {
+  --color-indigo-deep: #24104f;
+  --color-violet: #8b5cf6;
+  --color-violet-dark: #6d3fe0;
+  --color-lavender: #a78bfa;
+  --color-navy: #111827;
+  --color-surface: #f8f9fc;
+  --color-line: #e5e7f0;
+  --color-muted: #4b5563;
+  --font-display: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { background: var(--color-surface); color: var(--color-navy); font-family: var(--font-sans); overflow-x: hidden; }
+  h1, h2, h3, h4 { font-family: var(--font-display); color: var(--color-navy); letter-spacing: -0.02em; }
+  :focus-visible { outline: 2px solid var(--color-violet); outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: var(--color-lavender); color: #fff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 70% 40%, #000 20%, transparent 75%);
+}
